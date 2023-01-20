@@ -51,11 +51,12 @@ class MainActivity : AppCompatActivity() {
                 }
                 !shouldShowRequestPermissionRationale(Manifest.permission.CAMERA) -> {
                     Log.d("Tatsuya", "onCreate: 今後表示しないの時")
-                    val intent = Intent(
+                    val settingsIntent = Intent(
                         android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
                         Uri.parse("package:$packageName")
                     )
-                    startActivity(intent)
+                    settingsIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    startActivity(settingsIntent)
                 }
                 else -> {
                     Log.d("Tatsuya", "onCreate: requestPermissionLauncher.launch")
